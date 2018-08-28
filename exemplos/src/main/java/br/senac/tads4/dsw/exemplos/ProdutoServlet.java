@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2018 Senac TADS DSW-B.
+ * Copyright 2018 Senac TADS DSW-A.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.senac.tads4.dswa.exemplos;
+package br.senac.tads4.dsw.exemplos;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;

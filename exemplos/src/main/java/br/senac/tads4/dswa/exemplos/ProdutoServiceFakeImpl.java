@@ -36,7 +36,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ProdutoServiceFakeImpl implements ProdutoService {
 
-    private Map<Long,Produto> produtos = new ConcurrentHashMap<Long,Produto>();
+    private Map<Long, Produto> produtos = new ConcurrentHashMap<Long, Produto>();
 
     public ProdutoServiceFakeImpl() {
         for (long i = 1; i < 20; i++) {
@@ -48,6 +48,11 @@ public class ProdutoServiceFakeImpl implements ProdutoService {
     @Override
     public List<Produto> listar(int offset, int quantidade) {
         return new ArrayList<>(produtos.values());
+    }
+
+    @Override
+    public Produto obter(long id) {
+        return produtos.get(id);
     }
 
 }

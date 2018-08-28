@@ -33,4 +33,6 @@ public interface ProdutoService {
     
     public List<Produto> listar(int offset, int quantidade);
     
+    public Produto obter(long id);
+    
 }

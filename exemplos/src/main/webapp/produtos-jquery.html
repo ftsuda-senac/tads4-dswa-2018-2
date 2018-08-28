@@ -13,7 +13,7 @@
             function carregarProdutos() {
                 $.ajax({
                     method: "GET",
-                    url: "http://localhost:8084/exemplos/produtos-ajax",
+                    url: "http://localhost:8080/exemplos/produtos-ajax",
                     dataType: "json"
                 }).done(function (dataJSON) {
                     for (let i = 0; i < dataJSON.length; i++) {
@@ -30,7 +30,7 @@
 
             // Versão reduzida do código acima
             function carregarProdutos2() {
-                $.getJSON("http://localhost:8084/exemplos/produtos-ajax", function (dataJSON) {
+                $.getJSON("http://localhost:8080/exemplos/produtos-ajax", function (dataJSON) {
                     for (let i = 0; i < dataJSON.length; i++) {
                         let itemDom = "<div class=\"col-sm-4\">" +
                                 "<img src=\"" + dataJSON[i].imagem + "\">" +

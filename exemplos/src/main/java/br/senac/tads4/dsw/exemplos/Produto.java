@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.senac.tads4.dswa.exemplos;
+package br.senac.tads4.dsw.exemplos;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

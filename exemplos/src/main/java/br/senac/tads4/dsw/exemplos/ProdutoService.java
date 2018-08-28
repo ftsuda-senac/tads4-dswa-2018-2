@@ -21,38 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.senac.tads4.dswa.exemplos;
+package br.senac.tads4.dsw.exemplos;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
  * @author fernando.tsuda
  */
-public class ProdutoServiceFakeImpl implements ProdutoService {
-
-    private Map<Long, Produto> produtos = new ConcurrentHashMap<Long, Produto>();
-
-    public ProdutoServiceFakeImpl() {
-        for (long i = 1; i < 20; i++) {
-            Produto p = new Produto(i, "Produto " + i, "Descrição do produto", LocalDateTime.now(), new BigDecimal(i * 20 % 100), new BigDecimal(i * 30 % 120), 100, "http://via.placeholder.com/300x200");
-            produtos.put(i, p);
-        }
-    }
-
-    @Override
-    public List<Produto> listar(int offset, int quantidade) {
-        return new ArrayList<>(produtos.values());
-    }
-
-    @Override
-    public Produto obter(long id) {
-        return produtos.get(id);
-    }
-
+public interface ProdutoService {
+    
+    public List<Produto> listar(int offset, int quantidade);
+    
+    public Produto obter(long id);
+    
 }

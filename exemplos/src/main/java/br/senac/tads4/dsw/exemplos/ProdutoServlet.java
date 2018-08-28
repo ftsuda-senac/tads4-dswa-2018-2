@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package br.senac.tads4.dswa.exemplos;
+package br.senac.tads4.dsw.exemplos;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
@@ -37,20 +37,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author fernando.tsuda
  */
-@WebServlet(name = "ProdutoAjaxServlet", urlPatterns = {"/produtos-ajax"})
-public class ProdutoAjaxServlet extends HttpServlet {
+@WebServlet(name = "ProdutoServlet", urlPatterns = {"/produtos"})
+public class ProdutoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProdutoService service = new ProdutoServiceFakeImpl();
-        List<Produto> resultados = service.listar(0, 100);
-        
-        /*
-        request.setAttribute("produtos", resultado);
-        request.getRequestDispatcher("/WEB-INF/jsp/produtos.jsp").forward(request, response);
-        */
+        List<Produto> resultado = service.listar(0, 100);
 
+        request.setAttribute("produtos", resultado);
+        request.getRequestDispatcher("/WEB-INF/jsp/produtos.jsp")
+                .forward(request, response);
+
+        /*
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         
@@ -59,6 +59,7 @@ public class ProdutoAjaxServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.print(mapper.writeValueAsString(resultados));
         }
-
+         */
     }
+
 }

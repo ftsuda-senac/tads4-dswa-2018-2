@@ -23,8 +23,19 @@
             };
 
             function mostrarMensagem() {
-                let raiz = document.querySelector("#lista");
-                raiz.insertAdjacentHTML('beforeend', "<div>Mensagem</div>");
+
+                let produtos = '[{"id":1,"nome":"Produto 100","descricao":"Descrição do produto","precoCompra":20,"precoVenda":30,"quantidade":100,"imagem":"http://via.placeholder.com/300x200"},{"id":2,"nome":"Produto 102","descricao":"Descrição do produto","precoCompra":40,"precoVenda":60,"quantidade":100,"imagem":"http://via.placeholder.com/300x200"}]';
+                var data = JSON.parse(produtos);
+
+                for (let i = 0; i < data.length; i++) {
+                    let itemDom = "<div class=\"col-sm-4\">" +
+                            "<img src=\"" + data[i].imagem + "\">" +
+                            "<h2>" + data[i].nome + "</h2>" +
+                            "<p>" + data[i].descricao + "</p>"
+                            + "</div>";
+                    let raiz = document.querySelector("#lista");
+                    raiz.insertAdjacentHTML('beforeend', itemDom);
+                }
             }
 
             function carregarProdutos() {
@@ -63,12 +74,14 @@
             documentReady(function () {
                 let botao = document.querySelector("#botao");
                 botao.addEventListener("click", carregarProdutos);
+                //carregarProdutos();
             });
         </script>
     </head>
     <body>
         <div class="container">
-            <h1>Produtos</h1>
+            <h1>Produtos - Ajax com Javascript puro</h1>
+            <p>Para ver quantidade de requisições, abrir o console de desenvolvedor e contar em Network</p>
             <div class="row" id="lista">
 
                 <div class="col-sm-4">

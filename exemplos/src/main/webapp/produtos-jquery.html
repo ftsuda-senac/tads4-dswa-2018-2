@@ -30,7 +30,8 @@
 
             // Versão reduzida do código acima
             function carregarProdutos2() {
-                $.getJSON("http://localhost:8084/exemplos/produtos-ajax", function (dataJSON) {
+                $.getJSON("http://localhost:8084/exemplos/produtos-ajax", 
+                function (dataJSON) {
                     for (let i = 0; i < dataJSON.length; i++) {
                         let itemDom = "<div class=\"col-sm-4\">" +
                                 "<img src=\"" + dataJSON[i].imagem + "\">" +
@@ -50,7 +51,8 @@
     </head>
     <body>
         <div class="container">
-            <h1>Produtos</h1>
+            <h1>Produtos - Ajax com jQuery</h1>
+            <p>Para ver quantidade de requisições, abrir o console de desenvolvedor e contar em Network</p>
             <div class="row" id="lista">
 
                 <div class="col-sm-4">

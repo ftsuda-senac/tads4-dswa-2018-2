@@ -14,7 +14,8 @@
     </head>
     <body>
         <div class="container">
-            <h1>Produtos</h1>
+            <h1>Produtos - Carregamento tradicional</h1>
+            <p>Para ver quantidade de requisições, abrir o console de desenvolvedor e contar em Network</p>
             <div class="row">
                 <c:forEach items="${produtos}" var="p">
                     <div class="col-sm-4">

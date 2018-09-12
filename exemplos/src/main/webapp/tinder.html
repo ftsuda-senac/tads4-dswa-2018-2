@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script>
+        var currentPage = 1;
+        function loadInfo() {
+            $.getJSON("https://randomuser.me/api/", {
+                seed: "tads",
+                page: currentPage,
+                results: 1,
+                nat: "br",
+                gender: "female",
+                inc: "name,picture,dob"
+            }, function (dataJSON) {
+                for (let i = 0; i < dataJSON.results.length; i++) {
+                    let result = dataJSON.results[i];
+                    let titulo = result.name.first + ", " + result.dob.age;
+                    let urlImagem = result.picture.large;
+                    $("#imgPessoa").attr("src", urlImagem);
+                    $("#titulo").text(titulo);
+                }
+                currentPage++;
+            });
+        }
+        $(function () {
+
+            $(".btnLoadMore").click(function (ev) {
+                loadInfo();
+            });
+            // Carrega item inicial
+            loadInfo();
+
+        });
+    </script>
+</head>
+
+<body>
+    <h1 class="text-center">Tantã</h1>
+    <div class="container">
+        <div class="row" id="pessoas">
+            <div class="col-12">
+                <div class="card" style="width: 24rem; margin-left: auto; margin-right: auto;">
+                    <img class="card-img-top" src="" id="imgPessoa">
+                    <div class="card-body">
+                        <h5 class="card-title" id="titulo">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <button class="btn btn-lg btn-block btn-danger btnLoadMore">Não</button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-lg btn-block btn-success btnLoadMore">Sim</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

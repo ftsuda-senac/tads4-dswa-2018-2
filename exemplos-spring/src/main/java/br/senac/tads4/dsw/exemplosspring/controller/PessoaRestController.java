@@ -32,7 +32,7 @@ public class PessoaRestController {
     @GetMapping("/{id}")
     public ResponseEntity<Pessoa> obter(@PathVariable("id") Long id) {
         PessoaService service = new PessoaService();
-        Pessoa pessoa = service.obter(1L);
+        Pessoa pessoa = service.obter(id);
         return ResponseEntity.ok(pessoa);
     }
 

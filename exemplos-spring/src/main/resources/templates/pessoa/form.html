@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Spring MVC - Exemplo 1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Spring MVC - Exemplo 1</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <form class="form" th:action="@{/pessoa/salvar}" th:object="${pessoa}" method="post">
+                            <input type="hidden" th:if="${pessoa.id != null}" th:field="*{id}" />
+                            <div class="form-group">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" name="xpto1" th:field="*{nome}" />
+                                <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail</label>
+                                <input type="email" class="form-control" name="xpto3" th:field="*{email}"  />
+                                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <input type="text" class="form-control" name="xpto1" th:field="*{telefone}" />
+                                <p th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></p>
+                            </div>
+                            <div class="form-group">
+                                <fieldset>
+                                    <legend>Sexo</legend>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input" name="sexo" id="radsexof" value="0" th:field="*{sexo}" checked />
+                                        <label class="form-check-label" for="radsexof">Feminino</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input" name="sexo" id="radsexom" value="1" th:field="*{sexo}" />
+                                        <label class="form-check-label" for="radsexom">Masculino</label>
+                                    </div>
+                                    <p th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}"></p>
+                                </fieldset>
+                            </div>
+                            <div class="form-group">
+                                <fieldset>
+                                    <legend>Interesses</legend>
+                                    <div class="form-check form-check-inline">
+                                        <input type="checkbox" class="form-check-input" name="interesses" id="chk1" value="0" th:field="*{interesses}" checked />
+                                        <label class="form-check-label" for="chk1">Interesse 1</label>
+                                    </div>
+                                    <p th:if="${#fields.hasErrors('interesses')}" th:errors="*{interesses}"></p>
+                                </fieldset>
+                            </div>
+
+                            <button class="btn btn-success btn-block">Salvar</button>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

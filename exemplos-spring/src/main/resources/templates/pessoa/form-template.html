@@ -26,6 +26,7 @@
                                 <input type="text" class="form-control" name="xpto1" th:field="*{nome}" />
                                 <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></p>
                             </div>
+                            
                             <div class="form-group">
                                 <label>E-mail</label>
                                 <input type="email" class="form-control" name="xpto3" th:field="*{email}"  />

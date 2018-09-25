@@ -10,7 +10,9 @@ import br.senac.tads4.dsw.exemplosspring.service.PessoaService;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,19 +23,33 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/mvc/pessoa")
 public class PessoaController {
-    
+
     @GetMapping
     public ModelAndView listar() {
         PessoaService service = new PessoaService();
         List<Pessoa> lista = service.listar();
-        return new ModelAndView("pessoa/lista").addObject("pessoas", lista);
+        return new ModelAndView("pessoa/lista")
+                .addObject("pessoas", lista);
     }
-    
+
     @GetMapping("/{id}")
     public ModelAndView obter(@PathVariable("id") Long id) {
         PessoaService service = new PessoaService();
         Pessoa pessoa = service.obter(id);
-        return new ModelAndView("pessoa/detalhe").addObject("pessoa", pessoa);
+        return new ModelAndView("pessoa/detalhe")
+                .addObject("pessoa", pessoa);
+    }
+
+    @GetMapping("/formulario")
+    public ModelAndView abrirFormulario() {
+        return new ModelAndView("pessoa/formulario")
+                .addObject("pessoa", new Pessoa());
     }
     
+    @PostMapping("/salvar")
+    public ModelAndView salvar(@ModelAttribute("pessoa") Pessoa pessoa) {
+        return new ModelAndView("pessoa/resultado")
+                .addObject("pessoa", pessoa);
+    }
+
 }

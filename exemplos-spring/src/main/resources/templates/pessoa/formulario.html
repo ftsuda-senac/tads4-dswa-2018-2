@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Exemplo POST</h1>
+        <div>
+            <form th:action="@{/mvc/pessoa/salvar}" method="post"
+                  th:object="${pessoa}">
+                <div>
+                    <label>Nome</label>
+                    <input type="text" th:field="*{nome}" />
+                </div>
+               <div>
+                    <label>Senha</label>
+                    <input type="password" th:field="*{senha}"/>
+                </div>
+                <div>
+                    <label>E-mail</label>
+                    <input type="email" th:field="*{email}" />
+                </div>
+                <div>
+                    <label>Telefone</label>
+                    <input type="text" th:field="*{telefone}" />
+                </div>
+                <fieldset>
+                    <legend>Sexo</legend>
+                    <input type="radio" value="0" th:field="*{sexo}" />
+                    <label>Feminino</label>
+                    <input type="radio" value="1" th:field="*{sexo}" />
+                    <label>Masculino</label>
+                </fieldset>
+                <fieldset>
+                    <legend>Interesses</legend>
+                    <input type="checkbox" value="A" th:field="*{interesses}" />
+                    <label>Interesse A</label>
+                    <input type="checkbox" value="B" th:field="*{interesses}" />
+                    <label>Interesse B</label>
+                    <input type="checkbox" value="C" th:field="*{interesses}" />
+                    <label>Interesse C</label>
+                </fieldset>
+                <button type="submit">Enviar</button>
+            </form>
+            
+        </div>
+    </body>
+</html>

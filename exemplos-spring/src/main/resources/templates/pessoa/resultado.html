@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Exemplo POST - Resultado</h1>
+        <p th:text="${pessoa.nome}"></p>
+        <p th:text="${pessoa.email}"></p>
+        <p th:text="${pessoa.telefone}"></p>
+        <p th:text="${pessoa.senha}"></p>
+        <p th:text="${pessoa.sexo}"></p>
+        <ul th:if="${pessoa.interesses != null}" 
+            th:each="interesse: ${pessoa.interesses}">
+            <li th:text="${interesse}"></li>
+        </ul>
+    </body>
+</html>

@@ -13,6 +13,8 @@ public class Pessoa {
     private String nome;
 
     private String email;
+    
+    private String senha;
 
     private String telefone;
 
@@ -60,6 +62,14 @@ public class Pessoa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getTelefone() {

@@ -7,14 +7,19 @@
     </head>
     <body>
         <h1>Exemplo POST - Resultado</h1>
-        <p th:text="${pessoa.nome}"></p>
-        <p th:text="${pessoa.email}"></p>
-        <p th:text="${pessoa.telefone}"></p>
-        <p th:text="${pessoa.senha}"></p>
-        <p th:text="${pessoa.sexo}"></p>
-        <ul th:if="${pessoa.interesses != null}" 
-            th:each="interesse: ${pessoa.interesses}">
-            <li th:text="${interesse}"></li>
-        </ul>
+        <div th:if="${pessoa != null}">
+            <p th:text="${pessoa.nome}"></p>
+            <p th:text="${pessoa.email}"></p>
+            <p th:text="${pessoa.telefone}"></p>
+            <p th:text="${pessoa.senha}"></p>
+            <p th:text="${pessoa.sexo}"></p>
+            <ul th:if="${pessoa.interesses != null}" 
+                th:each="interesse: ${pessoa.interesses}">
+                <li th:text="${interesse}"></li>
+            </ul>
+        </div>
+        <div th:if="${pessoa == null}">
+            <h3>Nao tem resultado</h3>
+        </div>
     </body>
 </html>

@@ -7,8 +7,11 @@
     </head>
     <body>
         <h1>Exemplo POST</h1>
+        <div th:if="${msg != null}">
+            <p style="color: yellow; background-color: blue" th:text="${msg}"></p>
+        </div>
         <div>
-            <form th:action="@{/mvc/pessoa/salvar}" method="post"
+            <form th:action="@{/mvc/pessoa/salvar2}" method="post"
                   th:object="${pessoa}">
                 <div>
                     <label>Nome</label>

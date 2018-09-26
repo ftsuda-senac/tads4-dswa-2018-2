@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -52,4 +53,17 @@ public class PessoaController {
                 .addObject("pessoa", pessoa);
     }
 
+    @PostMapping("/salvar2")
+    public ModelAndView salvarComPostRedirectGet(
+            @ModelAttribute("pessoa") Pessoa pessoa,
+            RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("pessoa", pessoa);
+        redirectAttributes.addFlashAttribute("msg", "Pessoa adicionada com sucesso");
+        return new ModelAndView("redirect:/mvc/pessoa/formulario");
+    }
+    
+    @GetMapping("/resultado")
+    public ModelAndView mostrarResultado() {
+        return new ModelAndView("pessoa/resultado");
+    }
 }

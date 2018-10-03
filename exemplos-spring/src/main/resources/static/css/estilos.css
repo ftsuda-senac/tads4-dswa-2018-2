@@ -1,0 +1,11 @@
+/* http://sergiolopes.org/css-box-sizing-border-box/ */
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  overflow-y: scroll;
+}

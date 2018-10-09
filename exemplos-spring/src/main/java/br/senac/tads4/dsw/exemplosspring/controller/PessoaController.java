@@ -8,7 +8,9 @@ package br.senac.tads4.dsw.exemplosspring.controller;
 import br.senac.tads4.dsw.exemplosspring.model.Pessoa;
 import br.senac.tads4.dsw.exemplosspring.service.PessoaService;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,8 +57,13 @@ public class PessoaController {
 
     @PostMapping("/salvar2")
     public ModelAndView salvarComPostRedirectGet(
-            @ModelAttribute("pessoa") Pessoa pessoa,
+            @ModelAttribute("pessoa") @Valid Pessoa pessoa,
+            BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
+        
+        if (bindingResult.hasErrors()) {
+            return new ModelAndView("pessoa/formulario");
+        }
         redirectAttributes.addFlashAttribute("pessoa", pessoa);
         redirectAttributes.addFlashAttribute("msg", "Pessoa adicionada com sucesso");
         return new ModelAndView("redirect:/mvc/pessoa/formulario");

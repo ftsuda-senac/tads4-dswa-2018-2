@@ -1,6 +1,10 @@
 package br.senac.tads4.dsw.exemplosspring.model;
 
 import java.time.LocalDate;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -10,12 +14,18 @@ public class Pessoa {
 
     private Long id;
 
+    @Size(min = 2, max = 100, message = "Nome inválido")
     private String nome;
 
+    @NotBlank // BEAN VALIDATION 2.0
+    @Email
     private String email;
     
+    @Size(min = 6, max = 64)
     private String senha;
 
+    @Pattern(regexp = "^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})\\-?(\\d{4}))$",
+            message = "Formato do telefone inválido")
     private String telefone;
 
     private String urlImagem;

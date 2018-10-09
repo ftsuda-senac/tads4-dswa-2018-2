@@ -4,6 +4,11 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .erro-form {
+                background-color: lightpink;
+            }
+        </style>
     </head>
     <body>
         <h1>Exemplo POST</h1>
@@ -15,19 +20,27 @@
                   th:object="${pessoa}">
                 <div>
                     <label>Nome</label>
-                    <input type="text" th:field="*{nome}" />
+                    <input type="text" th:field="*{nome}" th:errorclass="erro-form" />
+                    <span th:if="${#fields.hasErrors('nome')}"
+                         th:errors="*{nome}"></span>
                 </div>
                <div>
                     <label>Senha</label>
                     <input type="password" th:field="*{senha}"/>
+                    <div th:if="${#fields.hasErrors('senha')}"
+                         th:errors="*{senha}"></div>
                 </div>
                 <div>
                     <label>E-mail</label>
                     <input type="email" th:field="*{email}" />
+                    <div th:if="${#fields.hasErrors('email')}"
+                         th:errors="*{email}"></div>
                 </div>
                 <div>
                     <label>Telefone</label>
                     <input type="text" th:field="*{telefone}" />
+                    <div th:if="${#fields.hasErrors('telefone')}"
+                         th:errors="*{telefone}"></div>
                 </div>
                 <fieldset>
                     <legend>Sexo</legend>

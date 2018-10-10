@@ -1,61 +1,24 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Exemplo Layout Dialect</title>
-        <link rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-              crossorigin="anonymous">
-        <link rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-            main {
-                margin-top: 60px;
-            }
-            nav {
+<html layout:decorate="~{modelo-principal}">
 
-            }
-        </style>
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <nav class="navbar fixed-top flex-md-nowrap p-0 navbar-dark bg-dark">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" data-th-href="@{/}" href="#">Exemplos Spring MVC</a>
-        </nav>
-        <main class="container" role="main">
-            <div class="row">
-                <div class="col-12" layout:fragment="conteudo">
-                    <h1>Tela 3</h1>
-                    <p th:if="${idSelecionado != null}" th:text="${idSelecionado}"></p>
-                    <ul th:each="id : ${ids}">
-                        <li>
-                            <a th:href="@{/layout-dialect/tela3?id={xpto}&name={abc}(xpto=${id},abc=${id})}" class="btn btn-success" role="button">
-                                Ir para <span th:text="${id}"></span>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul th:each="id : ${ids}">
-                        <li>
-                            <form th:action="@{/layout-dialect/tela3}" method="get">
-                                <input type="hidden" name="id" th:value="${id}" />
-                                <button type="submit">Ir para <span th:text="${id}"></span></button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </main>
-        <footer>
-            <p>&copy; Senac 2018</p>
-        </footer>
-    </body>
+    <div class="col-12" layout:fragment="conteudo">
+        <h1>Tela 3</h1>
+        <p th:if="${idSelecionado != null}" th:text="${idSelecionado}"></p>
+        <ul th:each="id : ${ids}">
+            <li>
+                <a th:href="@{/layout-dialect/tela3?id={xpto}&name={abc}(xpto=${id},abc=${id})}" class="btn btn-success" role="button">
+                    Ir para <span th:text="${id}"></span>
+                </a>
+            </li>
+        </ul>
+        <ul th:each="id : ${ids}">
+            <li>
+                <form th:action="@{/layout-dialect/tela3}" method="get">
+                    <input type="hidden" name="id" th:value="${id}" />
+                    <button type="submit">Ir para <span th:text="${id}"></span></button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
 </html>

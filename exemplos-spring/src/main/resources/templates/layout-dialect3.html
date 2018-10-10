@@ -2,12 +2,12 @@
 <html layout:decorate="~{modelo-principal}">
 
     <div class="col-12" layout:fragment="conteudo">
-        <h1>Tela 3</h1>
+        <h1 th:text="#{tela3}"></h1>
         <p th:if="${idSelecionado != null}" th:text="${idSelecionado}"></p>
         <ul th:each="id : ${ids}">
             <li>
                 <a th:href="@{/layout-dialect/tela3?id={xpto}&name={abc}(xpto=${id},abc=${id})}" class="btn btn-success" role="button">
-                    Ir para <span th:text="${id}"></span>
+                    <span th:text="#{irPara(${id})}"></span>
                 </a>
             </li>
         </ul>
@@ -15,7 +15,7 @@
             <li>
                 <form th:action="@{/layout-dialect/tela3}" method="get">
                     <input type="hidden" name="id" th:value="${id}" />
-                    <button type="submit">Ir para <span th:text="${id}"></span></button>
+                    <button type="submit" th:text="#{irPara(${id})}"></button>
                 </form>
             </li>
         </ul>

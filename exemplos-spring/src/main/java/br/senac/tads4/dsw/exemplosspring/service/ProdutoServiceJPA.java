@@ -10,11 +10,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author fernando.tsuda
  */
+@Repository
 public class ProdutoServiceJPA implements ProdutoService {
     
     @PersistenceContext
@@ -39,6 +42,7 @@ public class ProdutoServiceJPA implements ProdutoService {
         return resultado;
     }
 
+    @Transactional
     @Override
     public Produto save(Produto produto) {
         if (produto.getId() == null) {

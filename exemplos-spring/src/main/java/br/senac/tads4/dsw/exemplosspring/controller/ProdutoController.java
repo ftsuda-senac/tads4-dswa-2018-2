@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -40,7 +42,14 @@ public class ProdutoController {
 
     @GetMapping
     public ModelAndView listar() {
-        List<Produto> produtos = produtoService.findAll(0, 100);
+        List<Produto> produtos = produtoService.findAll();
+        return new ModelAndView("produto/lista-bs4")
+                .addObject("produtos", produtos);
+    }
+    
+    @GetMapping("/porNome")
+    public ModelAndView listarPorNome(@RequestParam("nome") String nome) {
+        List<Produto> produtos = produtoService.findByNomeAndDisponivelTrue(nome);
         return new ModelAndView("produto/lista-bs4")
                 .addObject("produtos", produtos);
     }
@@ -53,7 +62,8 @@ public class ProdutoController {
 
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable("id") Long id) {
-        Produto produto = produtoService.findById(id);
+        Optional<Produto> optProduto = produtoService.findById(id);
+        Produto produto = optProduto.get();
         if (produto.getCategorias() != null 
                 && !produto.getCategorias().isEmpty()) {
             List<Integer> idsCategorias = new ArrayList<>();
@@ -76,7 +86,8 @@ public class ProdutoController {
                 && !produto.getIdsCategorias().isEmpty()) {
             Set<Categoria> categoriasSelecionadas = new HashSet<>();
             for (Integer idCat : produto.getIdsCategorias()) {
-                Categoria cat = categoriaService.findById(idCat);
+                Optional<Categoria> optCat = categoriaService.findById(idCat);
+                Categoria cat = optCat.get();
                 cat.setProdutos(new HashSet<>(Arrays.asList(produto)));
                 categoriasSelecionadas.add(cat);
             }

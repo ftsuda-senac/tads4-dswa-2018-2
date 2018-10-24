@@ -7,17 +7,26 @@ package br.senac.tads4.dsw.exemplosspring.service;
 
 import br.senac.tads4.dsw.exemplosspring.model.Produto;
 import java.util.List;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author fernando.tsuda
  */
-public interface ProdutoService {
+@Repository
+public interface ProdutoService
+        extends JpaRepository<Produto, Long> {
     
-    List<Produto> findAll(int offset, int quantidade);
+    List<Produto> findByNome(String nome);
     
-    Produto findById(long id);
+    List<Produto> findByNomeAndDisponivelTrue(String nome);
     
-    Produto save(Produto produto);
-    
+    // Exemplo caso seja necessario customizar query JPQL
+//    @Query("SELECT p FROM Produto p LEFT JOIN FETCH "
+//            + "p.categorias WHERE p.nome = ?1")
+//    Optional<Produto> findByNome(String nome);
+
 }

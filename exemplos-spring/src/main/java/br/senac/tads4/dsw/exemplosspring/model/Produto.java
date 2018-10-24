@@ -8,6 +8,7 @@ package br.senac.tads4.dsw.exemplosspring.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 /**
  *
@@ -47,6 +49,9 @@ public class Produto implements Serializable {
     private boolean disponivel;
     
     private LocalDateTime dtCadastro;
+   
+    @Transient
+    private List<Integer> idsCategorias;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "PRODUTO_CATEGORIA",
@@ -128,6 +133,14 @@ public class Produto implements Serializable {
 
     public void setCategorias(Set<Categoria> categorias) {
         this.categorias = categorias;
+    }
+
+    public List<Integer> getIdsCategorias() {
+        return idsCategorias;
+    }
+
+    public void setIdsCategorias(List<Integer> idsCategorias) {
+        this.idsCategorias = idsCategorias;
     }
 
 }

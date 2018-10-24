@@ -65,17 +65,11 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label">Categoria</label>
                                 <div class="col-sm-10">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="catA" value="A" />
-                                        <label class="form-check-label" for="catA">Categoria A</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="catB" value="B" />
-                                        <label class="form-check-label" for="catB">Categoria B</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="catC" value="C" />
-                                        <label class="form-check-label" for="catC">Categoria C</label>
+                                    <div class="form-check form-check-inline" th:each="cat : ${categorias}">
+                                        <input class="form-check-input" type="checkbox" 
+                                               th:field="*{idsCategorias}" th:value="${cat.id}" />
+                                        <label class="form-check-label" th:text="${cat.nome}" 
+                                               th:for="${#ids.prev('idsCategorias')}">Categoria A</label>
                                     </div>
                                 </div>
                             </div>

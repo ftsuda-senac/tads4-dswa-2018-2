@@ -34,9 +34,16 @@ public class ProdutoServiceJPA implements ProdutoService {
 
     @Override
     public Produto findById(long id) {
+//        // JOIN QUE DEVE SER FEITO QUANDO OPEN-IN-VIEW FOR FALSE
+//        Query queryJPQL = 
+//                entityManager.createQuery(
+//                        "SELECT p FROM Produto p "
+//                        + "LEFT JOIN FETCH p.categorias "
+//                        + "WHERE p.id = :idProd");
         Query queryJPQL = 
                 entityManager.createQuery(
-                        "SELECT p FROM Produto p WHERE p.id = :idProd");
+                        "SELECT p FROM Produto p "
+                        + "WHERE p.id = :idProd");
         queryJPQL.setParameter("idProd", id);
         Produto resultado = (Produto) queryJPQL.getSingleResult();
         return resultado;

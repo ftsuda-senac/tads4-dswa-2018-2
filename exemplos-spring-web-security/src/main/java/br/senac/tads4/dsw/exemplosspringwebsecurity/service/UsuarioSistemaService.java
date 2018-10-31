@@ -41,9 +41,12 @@ public class UsuarioSistemaService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String string)
+    public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        return null;
+        if (USUARIOS_CADASTRADOS.containsKey(username)) {
+            return USUARIOS_CADASTRADOS.get(username);
+        }
+        throw new UsernameNotFoundException("Usuário não encontrado");
     }
 
 }

@@ -10,6 +10,7 @@
         <div>
             <h2>Nome completo: <span th:text="${usuario.nomeCompleto}"></span></h2>
             <p th:text="${usuario.hashSenha}"></p>
+            <p><a th:href="@{/logout}">Sair</a></p>
         </div>
         <ul>
             <li>

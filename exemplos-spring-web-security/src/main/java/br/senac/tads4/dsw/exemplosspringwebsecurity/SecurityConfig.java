@@ -50,6 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/**").authenticated()
             .and()
                 .formLogin()
+                    .loginPage("/login") // DEFINE A TELA DE LOGIN DO SISTEMA E NAO DO SPRING
+                    .usernameParameter("username")
+                    .passwordParameter("senha")
                     .defaultSuccessUrl("/home").permitAll();
 
     }

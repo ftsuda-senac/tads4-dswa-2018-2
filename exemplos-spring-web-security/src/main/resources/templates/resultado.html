@@ -6,9 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <h1 th:text="${titulo}"></h1>
         <div>
-            <h1 th:text="${titulo}"></h1>
-            <h2 th:text="${msg}"></h2>
+            <h2>Nome completo: <span sec:authentication="principal.nomeCompleto"></span></h2>
+            <p sec:authentication="principal.hashSenha"></p>
+            <p><a th:href="@{/logout}">Sair</a></p>
         </div>
+            
+        <h2 th:text="${msg}"></h2>
     </body>
 </html>

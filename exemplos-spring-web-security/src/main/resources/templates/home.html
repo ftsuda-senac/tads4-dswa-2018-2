@@ -13,13 +13,13 @@
             <p><a th:href="@{/logout}">Sair</a></p>
         </div>
         <ul>
-            <li>
+            <li sec:authorize="hasRole('ROLE_PEAO')">
                 <a th:href="@{/protegido/peao}">Acesso a /protegido/peao</a>
             </li>
-            <li>
+            <li sec:authorize="hasRole('ROLE_FODON')">
                 <a th:href="@{/protegido/fodon}">Acesso a /protegido/fodon</a>
             </li>
-            <li>
+            <li sec:authorize="hasRole('ROLE_GOD')">
                 <a th:href="@{/protegido/god}">Acesso a /protegido/god</a>
             </li>            
         </ul>

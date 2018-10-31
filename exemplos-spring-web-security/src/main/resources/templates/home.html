@@ -11,5 +11,16 @@
             <h2>Nome completo: <span th:text="${usuario.nomeCompleto}"></span></h2>
             <p th:text="${usuario.hashSenha}"></p>
         </div>
+        <ul>
+            <li>
+                <a th:href="@{/protegido/peao}">Acesso a /protegido/peao</a>
+            </li>
+            <li>
+                <a th:href="@{/protegido/fodon}">Acesso a /protegido/fodon</a>
+            </li>
+            <li>
+                <a th:href="@{/protegido/god}">Acesso a /protegido/god</a>
+            </li>            
+        </ul>
     </body>
 </html>

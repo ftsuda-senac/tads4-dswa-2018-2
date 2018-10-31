@@ -5,6 +5,8 @@
  */
 package br.senac.tads4.dsw.exemplosspringwebsecurity.controller;
 
+import br.senac.tads4.dsw.exemplosspringwebsecurity.model.UsuarioSistema;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
     
     @GetMapping
-    public ModelAndView mostrarHome() {
-        return new ModelAndView("home");
+    public ModelAndView mostrarHome(Authentication authentication) {
+        UsuarioSistema usuario = (UsuarioSistema) authentication.getPrincipal();
+        return new ModelAndView("home").addObject("usuario", usuario);
     }
     
 }

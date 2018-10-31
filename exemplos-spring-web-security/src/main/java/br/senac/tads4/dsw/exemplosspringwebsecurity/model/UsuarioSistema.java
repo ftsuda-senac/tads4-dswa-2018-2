@@ -5,6 +5,7 @@
  */
 package br.senac.tads4.dsw.exemplosspringwebsecurity.model;
 
+import br.senac.tads4.dsw.exemplosspringwebsecurity.SecurityConfig;
 import java.util.Collection;
 import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
@@ -36,7 +37,9 @@ public class UsuarioSistema implements UserDetails {
     }
 
     public final void setSenha(String senhaAberta) {
-        this.hashSenha = senhaAberta;
+        this.hashSenha = 
+                SecurityConfig.bcryptPasswordEncoder()
+                        .encode(senhaAberta);
     }
 
     @Override
